@@ -1,0 +1,36 @@
+{
+    "name": "vuravel/elements",
+    "description": "Vue.js & Laravel Elements - The basic building blocks",
+    "keywords": [
+        "vue","vuejs","vue-js",
+        "laravel","php","framework","cms",
+        "vuravel",
+        "element","elements",
+        "button","buttons",
+        "modal","modals",
+        "link","links"
+    ],
+    "license": "MIT",
+    "require": {
+    	"php": ">=7.1.0",
+        "laravel/framework": ">=5.6.0",
+        "vuravel/core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vuravel\\Elements\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vuravel\\Elements\\VuravelElementsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
