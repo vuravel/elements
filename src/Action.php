@@ -29,6 +29,9 @@ class Action
     public $event;
     public $emitPayload;
 
+    //Catalog
+    public $page;
+
     //Performs Ajax
     public $ajaxPayload;
     public $sessionTimeoutMessage;
@@ -241,8 +244,9 @@ class Action
         return $this;
     }
 
-    public function refreshCatalog($catalogId = null)
+    public function refreshCatalog($catalogId = null, $page = null)
     {
+        $this->page = $page;
         $this->action = 'refreshCatalog';
         $this->isAjax = true;
         $this->vuravelid = $catalogId;
