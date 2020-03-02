@@ -24,6 +24,7 @@ class Action
     public $route;
     public $routeMethod;
     public $included;
+    public $handle;
 
     //EmitsEvents
     public $event;
@@ -135,9 +136,9 @@ class Action
         return $this->commonAjax($ajaxPayload);
     }
     
-    public function includes($method)
+    public function includes($methodName)
     {
-        $this->included = $method;
+        $this->included = $methodName;
 
         $this->setRoute('vuravel-form.include-fields');
         $this->setRouteMethod('POST');
@@ -219,10 +220,11 @@ class Action
     /********************************************
     ************** Form Actions overrides *******
     *********************************************/
-    public function submitsForm()
+    public function submitsForm($methodName = null)
     {
         $this->action = 'submitForm';
         $this->isAjax = true;
+        $this->handle = $methodName;
         return $this;
     }
 

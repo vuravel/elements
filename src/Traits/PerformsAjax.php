@@ -64,14 +64,14 @@ trait PerformsAjax {
      * <php>->includes('newComponentsMethod')->inPanel('panel-id')</php>
      * 
      *
-     * @param  string  $method    The class's method name that will return the new components.
+     * @param  string  $methodName    The class's method name that will return the new components.
      * 
      * @return self
      */
-    public function includes($method)
+    public function includes($methodName)
     {
-        return $this->updateDefaultTrigger(function($e) use($method) {
-            $e->includes($method);
+        return $this->updateDefaultTrigger(function($e) use($methodName) {
+            $e->includes($methodName);
         });
     }
 
