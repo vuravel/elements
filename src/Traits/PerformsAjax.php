@@ -59,21 +59,19 @@ trait PerformsAjax {
     }
 
     /**
-     * Includes a `Vuravel/Form/Form` or `Vuravel/Catalog/Catalog` by AJAX into the parent component. The new fields will be included in the Parent's Form data.
+     * Includes additional components from the server, which will be included in the Form data.
      * To display it, you should chain it with the methods `inModal` or `inPanel`, the containers in which the view will be displayed. For example:
-     * <php>->loads('new-form-route')->inPanel('panel-id')</php>
+     * <php>->includes('newComponentsMethod')->inPanel('panel-id')</php>
      * 
      *
-     * @param  string  $route    The route name or uri.
-     * @param  array|null  $parameters   The route parameters (optional).
-     * @param  array|null  $ajaxPayload  Additional custom data to add to the request. If the component is a Field, its' current value will be appended too
+     * @param  string  $method    The class's method name that will return the new components.
      * 
      * @return self
      */
-    public function include($route, $parameters = null, $ajaxPayload = null)
-    {        
-        return $this->updateDefaultTrigger(function($e) use($route, $parameters, $ajaxPayload) {
-            $e->include($route, $parameters, $ajaxPayload);
+    public function includes($method)
+    {
+        return $this->updateDefaultTrigger(function($e) use($method) {
+            $e->includes($method);
         });
     }
 

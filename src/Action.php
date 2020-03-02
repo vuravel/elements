@@ -23,7 +23,7 @@ class Action
     //HasRoute
     public $route;
     public $routeMethod;
-    public $include;
+    public $included;
 
     //EmitsEvents
     public $event;
@@ -135,14 +135,14 @@ class Action
         return $this->commonAjax($ajaxPayload);
     }
     
-    public function include($route, $parameters = null, $ajaxPayload = null)
+    public function includes($method)
     {
-        $this->include = true;
+        $this->included = $method;
 
-        $this->setRoute($route, $parameters);
+        $this->setRoute('vuravel-form.include-fields');
         $this->setRouteMethod('POST');
 
-        return $this->commonAjax($ajaxPayload);
+        return $this->commonAjax();
     }
 
     //now it's the same as post. UPDATE DOCS
