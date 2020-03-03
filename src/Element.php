@@ -13,6 +13,7 @@ abstract class Element implements BasicAttributes
     use \Vuravel\Elements\Traits\HasClasses;
     use \Vuravel\Elements\Traits\HasData;
     use \Vuravel\Elements\Traits\HasStyles;
+    use \Vuravel\Elements\Traits\HasDuskSelector;
     use \Vuravel\Elements\Traits\HasAnimation;
     use \Vuravel\Elements\Traits\PerformsAjax;
     use \Vuravel\Elements\Traits\EmitsEvents;
