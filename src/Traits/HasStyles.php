@@ -19,18 +19,14 @@ trait HasStyles {
     public $style = '';
 
     /**
-     * Adds an array of styles to the element.
+     * Adds one or more ";"-separated styles to the element. 
      *
-     * @param  array|string  $styles
+     * @param  string  $styles
      * @return mixed
      */
     public function addStyle($styles)
     {
-        if(is_array($styles)){
-            $this->styles += $styles;
-        }else{
-            array_push($this->styles, $styles);
-        }
+        $this->styles[] = $styles;
         $this->createStyleString();
         return $this;
     }

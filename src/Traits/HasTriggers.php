@@ -31,7 +31,7 @@ trait HasTriggers {
     protected function defaultTrigger()
     {
         if(!Arr::get($this->triggers, $this->defaultTrigger) )
-            $this->pushTrigger($this->defaultTrigger, Action::emptyAjax($this)); //pushing empty ajax action trigger
+            $this->triggers[$this->defaultTrigger][] = Action::emptyAjax($this); //pushing empty ajax action trigger
 
         return collect($this->triggers[$this->defaultTrigger])->last(function($trigger){
             return $trigger->isAjax();
@@ -61,7 +61,7 @@ trait HasTriggers {
         if(!is_string($triggers) && !is_array($triggers))
             throw (new BadTriggerDefinitionException)->setMessage(gettype($triggers));
 
-        collect(is_array($triggers)? $triggers : [$triggers])->each(function($trigger) use($function) {
+        collect( (array)$triggers )->each(function($trigger) use($function) {
             $this->addTrigger($trigger, $function);
         });
 
@@ -73,15 +73,7 @@ trait HasTriggers {
         if(!in_array($trigger, self::$allowedTriggers))
             throw (new TriggerNotAllowedException)->setMessage($trigger);
 
-        $this->pushTrigger($trigger, Action::form($this, $function));
-    }
-
-    protected function pushTrigger($trigger, $triggerClass)
-    {
-        if(!Arr::get($this->triggers, $trigger))
-            $this->triggers[$trigger] = [];
-
-        array_push($this->triggers[$trigger], $triggerClass);
+        $this->triggers[$trigger][] = Action::form($this, $function);
     }
 
     public function hasTriggers()

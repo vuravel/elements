@@ -19,18 +19,14 @@ trait HasClasses {
     public $class = '';
 
     /**
-     * Adds an array of classes to the element.
+     * Adds classes to the element.
      *
-     * @param  array|string  $classes
+     * @param  string  $classes
      * @return mixed
      */
     public function addClass($classes)
     {
-        if(is_array($classes)){
-            $this->classes += $classes;
-        }else{
-            array_push($this->classes, $classes);
-        }
+        $this->classes[] = $classes;
         $this->createClassString();
         return $this;
     }
@@ -67,7 +63,7 @@ trait HasClasses {
 
     protected function createClassString()
     {
-        $this->class = implode(' ',$this->classes);
+        $this->class = implode(' ', $this->classes);
     }
 
 }

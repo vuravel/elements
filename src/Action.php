@@ -140,6 +140,8 @@ class Action
     {
         $this->included = $methodName;
 
+        $this->element->setIncludesMethod($methodName);
+
         $this->setRoute('vuravel-form.include-fields');
         $this->setRouteMethod('POST');
 

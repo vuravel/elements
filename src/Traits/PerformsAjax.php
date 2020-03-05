@@ -70,9 +70,18 @@ trait PerformsAjax {
      */
     public function includes($methodName)
     {
+        $this->setIncludesMethod($methodName);
+        
         return $this->updateDefaultTrigger(function($e) use($methodName) {
             $e->includes($methodName);
         });
+    }
+
+    public function setIncludesMethod($methodName)
+    {
+        return $this->data([
+            'includes' => $methodName
+        ]);
     }
 
     /**
